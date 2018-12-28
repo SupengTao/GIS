@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市关系可视化及问答系统</title>
+
+    <!--Bootstrap Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../static/images/logo.jpg">
+    <!--Nifty Stylesheet [ REQUIRED ]-->
+    <link href="../static/css/nifty.min.css" rel="stylesheet">
+
+
+    <!--Nifty Premium Icon [ DEMONSTRATION ]-->
+    <link href="../static/css/nifty-demo-icons.min.css" rel="stylesheet">
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="../static/css/nifty-demo-icons.min.css" rel="stylesheet">
+    <link href="../static/css/nifty-demo.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+    <!--JAVASCRIPT-->
+    <!--=================================================-->
+
+    <!--Pace - Page Load Progress Par [OPTIONAL]-->
+    <link href="../static/css/pace.min.css" rel="stylesheet">
+    <link href="../static/css/selector.css" rel="stylesheet">
+    <link href="../static/css/dialog.css" rel="stylesheet">
+    <link href="../static/css/btn.css" rel="stylesheet">
+    <script src="../static/js/pace.min.js"></script>
+
+
+    <!--jQuery [ REQUIRED ]-->
+    <script src="../static/js/jquery-2.2.4.min.js"></script>
+
+
+    <!--BootstrapJS [ RECOMMENDED ]-->
+    <script src="../static/js/bootstrap.min.js"></script>
+
+
+    <!--NiftyJS [ RECOMMENDED ]-->
+    <script src="../static/js/nifty.min.js"></script>
+    <script src="../static/js/icons.js"></script>
+    <script src="../static/js/echarts.min.js"></script>
+    <script src="../static/js/tags.js"></script>
+    <script src="../static/js/dialog.js"></script>
+
+
+
+    <!--=================================================-->
+
+    <!--Demo script [ DEMONSTRATION ]-->
+    <script src="../static/js/nifty-demo.min.js"></script>
+
+    <script src="../static/js/china.js"></script>
+    <style type="text/css">
+        #tagsList {position:relative; width:50px; height:50px; }
+        #tagsList a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:gray; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+        #tagsList a:hover { color:#249e92; letter-spacing:2px;}
+        #search:focus{
+            border: 1px solid #249e92;
+        }
+        img[src=""]{
+            opacity: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="container" class="effect aside-float aside-bright mainnav-lg">
+
+
+    <!--NAVBAR-->
+    <!--===================================================-->
+    <header id="navbar">
+        <div id="navbar-container" class="boxed">
+
+            <!--Brand logo & name-->
+            <!--================================-->
+            <div class="navbar-header">
+                <a href="index.html" class="navbar-brand">
+                    <img src="../static/images/220px-TJU_Logo,_a_logo_for_Tianjin_University.png" alt="Nifty Logo" class="brand-icon">
+                    <div class="brand-title">
+                        <span class="brand-text">城市知识图谱</span>
+                    </div>
+                </a>
+            </div>
+            <!--================================-->
+            <!--End brand logo & name-->
+
+
+            <!--Navbar Dropdown-->
+            <!--================================-->
+            <div class="navbar-content clearfix">
+                <ul class="nav navbar-top-links pull-left">
+
+                    <!--Navigation toogle button-->
+                    <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                    <li class="tgl-menu-btn">
+                        <a class="mainnav-toggle" href="#">
+                            <i class="demo-pli-view-list"></i>
+                        </a>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-top-links pull-left">
+
+                    <h4>城市关系可视化及问答系统</h4>
+
+
+
+
+
+
+                </ul>
+            </div>
+            <!--================================-->
+            <!--End Navbar Dropdown-->
+
+        </div>
+    </header>
+    <!--===================================================-->
+    <!--END NAVBAR-->
+
+
+
+    <div class="boxed">
+
+        <!--CONTENT CONTAINER-->
+        <!--===================================================-->
+        <div id="content-container">
+
+            <!--Page content-->
+            <!--===================================================-->
+            <div id="page-content">
+
+                <h4 class="text-main pad-btm bord-btm">城市关系可视化</h4>
+
+                <div id="fade" class="black_overlay"></div>
+                <div class="row" style="border: 2px solid">
+
+                    <div class="col-lg-4" >
+                        <div class="input-group" style="position: center">
+                            <input type="text" id="search" class="form-control input-lg"  placeholder="请输入你要检索的城市名字...">
+                            <span class="input-group-addon btn btn-mint"  onclick="search()">搜索</span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="col-lg-2">
+                            <div class="RadioStyle">
+                                <div class="Block PaddingL">
+                                    <input type="radio" name="Storage" id="model1" checked/>
+                                    <label for="model1">城市</label>
+                                    <input type="radio" name="Storage" id="model2" />
+                                    <label for="model2">大学</label>
+                                    <input type="radio" name="Storage" id="model3" />
+                                    <label for="model3">景点</label>
+                                    <input type="radio" name="Storage" id="model4"  />
+                                    <label for="model4">河流</label>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4" style="height: 100px ;width: 100px;" id="tagsList">
+                        <a href="#" data="北京" >北京</a>
+                        <a href="#" data="上海">上海</a>
+                        <a href="#" data="天津">天津</a>
+                        <a href="#" data="深圳">深圳</a>
+                        <a href="#" data="南京">南京</a>
+                        <a href="#" data="广州">广州</a>
+                        <a href="#" data="香港">香港</a>
+                        <a href="#" data="澳门">澳门</a>
+                        <a href="#" data="重庆">重庆</a>
+                        <a href="#" data="武汉">武汉</a>
+                        <a href="#" data="成都">成都</a>
+                        <a href="#" data="杭州">杭州</a>
+                        <a href="#" data="沈阳">沈阳</a>
+                        <a href="#" data="郑州">郑州</a>
+                        <a href="#" data="东莞">东莞</a>
+                        <a href="#" data="哈尔滨">哈尔滨</a>
+                        <a href="#" data="西安">西安</a>
+                        <a href="#" data="厦门">厦门</a>
+                        <a href="#" data="青岛">青岛</a>
+                        <a href="#" data="大连">大连</a>
+                    </div>
+
+                </div>
+
+                <div class="row" style="height: 400px;">
+                    <div class="row" >
+
+                         <div class="col-lg-6" id="neo4j"  style="height: 400px;border:2px solid" ></div>
+                         <!--<div class="col-lg-2" style="height: 400px"></div>-->
+                         <div class="col-lg-6" style="height: 400px; border:2px solid " id="map"  >
+
+                         </div>
+                         <div class="col-lg-6" style="height: 400px; border:2px solid" id="nomap"  >
+
+                             <div style=" height: 300px;width: 550px; display: flex; align-items:center; justify-content:center; ">
+                                 <img src="" id="img1"  style="width: 400px;height: 300px;" >
+
+                             </div>
+                                 <p id="Button1" class="button"> </p>
+                         </div>
+
+
+                  </div>
+
+                </div>
+            </div>
+            <!--===================================================-->
+            <!--End page content-->
+
+
+        </div>
+        <!--===================================================-->
+        <!--END CONTENT CONTAINER-->
+
+
+        <!--MAIN NAVIGATION-->
+        <!--===================================================-->
+        <nav id="mainnav-container">
+            <div id="mainnav">
+
+                <!--Menu-->
+                <!--================================-->
+                <div id="mainnav-menu-wrap">
+                    <div class="nano">
+                        <div class="nano-content">
+
+                            <ul id="mainnav-menu" class="list-group">
+
+
+
+                                <!--Category name-->
+                                <li class="list-header"> 城市关系图</li>
+
+                                <!--Menu list item-->
+
+
+                                <!--Menu list item-->
+                                <li>
+                                  <a href="{{url_for('search')}}">
+                                        <i class="fa fa-search" style="width:24px"></i>
+                                        <span class="menu-title">
+                                                <strong>检索城市关系</strong>
+                                            </span>
+
+                                    </a>
+
+
+                                </li>
+                                <li>
+                                  <a href="{{url_for('get_all_relation')}}">
+                                        <i class="fa fa-pie-chart" style="width:24px"></i>
+                                        <span class="menu-title">
+                                                <strong>城市关系全貌</strong>
+                                            </span>
+
+                                    </a>
+
+                                </li>
+                                <!--Menu list item-->
+
+
+
+                                <li class="list-divider"></li>
+
+                                <!--Category name-->
+                                <li class="list-header">问答系统</li>
+
+                                <!--Menu list item-->
+                                <li >
+                                  <a href="{{url_for('KGQA')}}">
+                                        <i class="fa fa-question-circle" style="width:24px"></i>
+                                        <span class="menu-title">城市关系问答</span>
+
+                                    </a>
+
+
+                                </li>
+
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--================================-->
+                <!--End menu-->
+
+                <script src="../static/js/two_echart.js"></script>
+
+
+            </div>
+
+        </nav>
+        <!--===================================================-->
+        <!--END MAIN NAVIGATION-->
+
+    </div>
+
+    <!-- FOOTER -->
+    <!--===================================================-->
+    <footer id="footer">
+
+
+    </footer>
+    <!--===================================================-->
+    <!-- END FOOTER -->
+
+    <!-- SCROLL PAGE BUTTON -->
+    <!--===================================================-->
+    <button class="scroll-top btn">
+        <i class="pci-chevron chevron-up"></i>
+    </button>
+    <!--===================================================-->
+</div>
+
+
+</body>
+</html>
